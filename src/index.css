@@ -6,11 +6,9 @@
   box-sizing: border-box;
 }
 
-/* || VARIABLES */
 
 :root {
-  /* COLORS */
-  --BGCOLOR: #0F172A;
+  --BGCOLOR: #000;
   --BORDER-COLOR: #FFF;
   --COLOR: #FFF;
   --ERROR: firebrick;
@@ -20,17 +18,17 @@
   --NOTE-BGCOLOR: hsla(240, 64%, 27%, 0.65);
   --STATUS-COMPLETE: limegreen;
   --STATUS-OPEN: firebrick;
-  --TABLE-BGCOLOR: #FFF;
-  --TABLE-COLOR: #000;
+  --TABLE-BGCOLOR: #111;
+  --TABLE-COLOR: #FFF;
 }
 
-/* || UTILITY CLASSES */
 .errmsg {
   display: inline-block;
   background-color: var(--TABLE-BGCOLOR);
   color: var(--ERROR);
-  padding: 0.25em;
-  margin-bottom: 0.5em;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 5px;
 }
 
 .nowrap {
@@ -46,6 +44,7 @@
   color: var(--COLOR);
   display: grid;
   place-content: center;
+  transition: transform 0.2s ease;
 }
 
 .icon-button:hover,
@@ -57,14 +56,12 @@
   visibility: hidden;
 }
 
-/* || GENERAL STYLES */
 
 body {
   font-family: 'Nunito', sans-serif;
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  background-image: url('./img/background.jpg');
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;
@@ -75,13 +72,14 @@ button,
 textarea,
 select {
   font: inherit;
+  border: none;
+  border-radius: 5px;
 }
 
 #root {
-  /* React root div */
   min-height: 100vh;
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
 }
 
 a {
@@ -98,7 +96,6 @@ a:focus-visible {
   color: var(--LINK-HOVER);
 }
 
-/* || PAGES */
 
 .public,
 .welcome {
@@ -128,7 +125,6 @@ a:focus-visible {
   content: "➜ "
 }
 
-/* || DASH HEADER, CONTAINER & FOOTER */
 
 .dash-header {
   position: sticky;
@@ -141,14 +137,14 @@ a:focus-visible {
 
 .dash-header__container {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
 .dash-header__nav {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: flex-end;
   gap: 0.5em;
 }
@@ -167,7 +163,7 @@ a:focus-visible {
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   justify-content: flex-start;
   gap: 1em;
 }
@@ -178,8 +174,6 @@ a:focus-visible {
   height: auto;
 }
 
-
-/* || TABLES - GENERAL */
 
 thead,
 tbody,
@@ -197,9 +191,10 @@ tr {
 }
 
 .table__button {
-  padding: 0.25em;
+  padding: 0.5em;
   font-size: 1.5rem;
   color: var(--TABLE-COLOR);
+  background-color: transparent;
 }
 
 .table__thead {
@@ -225,7 +220,6 @@ tr {
   background-color: var(--INACTIVE);
 }
 
-/* ||  NOTE */
 
 .note__created,
 .note__updated,
@@ -246,11 +240,9 @@ tr {
 }
 
 
-/* || FORM - GENERAL */
-
 .form {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 0.75em;
   max-width: 800px;
 }
@@ -278,7 +270,8 @@ tr {
 .form__input,
 .form__submit-button {
   padding: 0.5em;
-  border-radius: 15px;
+  border-radius: 5px;
+  border: 1px solid var(--BORDER-COLOR);
 }
 
 .form__input--text {
@@ -289,7 +282,6 @@ tr {
   border: 1px solid red;
   outline: 1px solid red;
 }
-
 
 .form__checkbox {
   width: 24px;
@@ -312,13 +304,13 @@ tr {
 
 .form__row {
   display: flex;
-  flex-flow: row nowrap;
+  flex-direction: row;
   gap: 2em;
 }
 
 .form__divider {
   display: flex;
-  flex-flow: column nowrap;
+  flex-direction: column;
   gap: 0.5em;
 }
 
@@ -337,7 +329,6 @@ tr {
 }
 
 @media screen and (min-width: 768px) {
-
   body {
     font-size: 1.25rem;
   }

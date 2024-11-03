@@ -1,37 +1,36 @@
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate,useLocation } from "react-router-dom";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate, useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 const DashFooter = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { pathname } = location;
-    
-    const onHomeClick = () => {
-        navigate("/dash");
-    }
-    let goHome = null;
-    if (pathname !== "/dash") {
-        goHome = (
-            <button className="dash-footer__button icon-button" title="Home" onClick={onHomeClick}>
-                <FontAwesomeIcon icon={faHouse} />
-            </button>
-        );
-    }
+  const { username, status } = useAuth();
 
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
-    const content = (
+  const onGoHomeClicked = () => navigate("/dash");
 
-        <footer className="dash-footer">
-            {goHome}
-            <p>Current User:</p>
-            <p>Status:</p>
-            <p>© 2024 NoteSphere</p>
-        </footer>
-
+  let goHomeButton = null;
+  if (pathname !== "/dash") {
+    goHomeButton = (
+      <button
+        className="dash-footer__button icon-button"
+        title="Home"
+        onClick={onGoHomeClicked}
+      >
+        <FontAwesomeIcon icon={faHouse} />
+      </button>
     );
+  }
 
-    return content;
-}
-
+  const content = (
+    <footer className="dash-footer">
+      {goHomeButton}
+      <p>Current User: {username}</p>
+      <p>Status: {status}</p>
+    </footer>
+  );
+  return content;
+};
 export default DashFooter;
